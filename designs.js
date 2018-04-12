@@ -19,17 +19,21 @@ function makeGrid() {
 	  var tr = document.createElement('tr')
     pixelCanvas.appendChild(tr)
     for (var j = 0; j < width; j++) {
-      var td = document.createElement('td')
-      tr.appendChild(td)
-      td.addEventListener("mousedown", fillSquare)
+      let td = document.createElement('td');
+      tr.appendChild(td);
+      td.addEventListener("mousedown", function() {
+        fillSquare(td);
+      });
+
+      td.addEventListener("mouseenter", function (e) {
+        if (e.buttons === 1) fillSquare(td);
+      });
   	}
 
   }
   // Your code goes here!
 };
 
-function fillSquare () {
-    this.setAttribute("style", `background-color: ${color.value}`);
+function fillSquare (td) {
+    td.setAttribute("style", `background-color: ${color.value}`);
 }
-
-//color.addEventListener("click", function(){});   maybe dont need
